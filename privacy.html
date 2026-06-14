@@ -7,18 +7,19 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="favicon.ico" sizes="any">
-<title>Privacy Policy — FightFax</title>
+<title>Privacy Policy - FightFax</title>
 <meta name="description" content="How FightFax handles information on fightfax.info.">
 <meta name="robots" content="index,follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#000;--fg:#fff;--muted:#9a9a9a;--faint:#6b6b6b;--card:#141414;--card-2:#0e0e0e;
     --line:#262626;--line-soft:#1a1a1a;--invert-bg:#fff;--invert-fg:#000;--maxw:1180px;
-    --display:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
-    --mono:'Space Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+    --accent:#e74c3c;--accent-soft:rgba(231,76,60,0.30);--accent-glow:rgba(231,76,60,0.45);
+    --display:'Unbounded','Helvetica Neue',Arial,sans-serif;
+    --mono:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -28,23 +29,23 @@
   h1,h2,h3,.display{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.05}
 
   /* NAV */
-  header.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(26,26,28,0.72);backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);border-bottom:1px solid rgba(255,255,255,0.08)}
   .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
   .brand{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:0.02em;display:flex;align-items:center;gap:9px}
   .brand .dot{width:9px;height:9px;background:var(--fg);display:inline-block}
   .brand-mark{width:24px;height:24px;border-radius:3px;display:block}
   .nav-links{display:flex;gap:26px;align-items:center}
-  .nav-links a{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);transition:color .15s}
-  .nav-links a:hover{color:var(--fg)}
-  .nav-cta{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;background:var(--invert-bg);color:var(--invert-fg);padding:10px 16px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--invert-bg);transition:.15s}
-  .nav-cta:hover{background:transparent;color:var(--fg)}
-  .menu-toggle{display:none;background:none;border:1px solid var(--line);color:var(--fg);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;padding:8px 12px;cursor:pointer}
+  .nav-links a{font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#cfcfcf;transition:color .18s,text-shadow .18s}
+  .nav-links a:hover{color:var(--accent);text-shadow:0 0 14px var(--accent-glow)}
+  .nav-cta{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;background:var(--fg);color:#000;padding:10px 16px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--fg);transition:background .18s,color .18s,border-color .18s,box-shadow .18s}
+  .nav-cta:hover{background:transparent;color:#fff;border-color:var(--accent);box-shadow:0 0 22px var(--accent-soft)}
+  .menu-toggle{display:none;background:none;border:1px solid var(--line);color:var(--fg);font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:0.08em;padding:8px 12px;cursor:pointer}
 
   /* HERO */
   .doc-hero{padding:72px 0 40px;border-bottom:1px solid var(--line-soft)}
-  .eyebrow{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint)}
+  .eyebrow{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
   .doc-hero h1{font-size:clamp(34px,5vw,60px);margin:18px 0 0}
-  .doc-meta{display:flex;flex-wrap:wrap;gap:24px;margin-top:24px;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:var(--faint)}
+  .doc-meta{display:flex;flex-wrap:wrap;gap:24px;margin-top:24px;font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;color:var(--faint)}
   .doc-meta b{color:var(--fg);font-weight:700}
   .doc-intro{color:var(--muted);max-width:74ch;margin-top:26px;font-size:15px}
 
@@ -55,32 +56,32 @@
   /* BODY LAYOUT */
   .doc-body{display:grid;grid-template-columns:240px 1fr;gap:60px;padding:56px 0 96px}
   .toc{position:sticky;top:96px;align-self:start;border-left:1px solid var(--line);padding-left:0}
-  .toc .toc-title{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint);padding:0 0 14px 18px}
+  .toc .toc-title{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);padding:0 0 14px 18px}
   .toc a{display:block;font-size:12.5px;color:var(--muted);padding:7px 0 7px 18px;border-left:2px solid transparent;margin-left:-1px;transition:color .15s,border-color .15s;line-height:1.4}
-  .toc a:hover{color:var(--fg)}
-  .toc a.active{color:var(--fg);border-left-color:var(--fg)}
+  .toc a:hover{color:var(--accent)}
+  .toc a.active{color:var(--accent);border-left-color:var(--accent)}
 
   .content{max-width:74ch}
   .content section{padding-bottom:38px;margin-bottom:38px;border-bottom:1px solid var(--line-soft);scroll-margin-top:96px}
   .content section:last-child{border-bottom:none}
   .content h2{font-size:22px;margin-bottom:16px;display:flex;gap:14px;align-items:baseline}
-  .content h2 .num{font-family:var(--display);font-weight:700;font-size:14px;color:var(--faint);min-width:26px}
+  .content h2 .num{font-family:var(--display);font-weight:700;font-size:14px;color:var(--accent);min-width:26px}
   .content h3{font-family:var(--display);font-weight:600;font-size:15px;margin:22px 0 8px}
   .content p{color:var(--muted);margin-bottom:14px}
   .content ul{list-style:none;margin:0 0 14px 0}
   .content li{color:var(--muted);padding:7px 0 7px 22px;position:relative}
-  .content li::before{content:"›";position:absolute;left:0;color:var(--fg);font-family:var(--display);font-weight:700}
+  .content li::before{content:"›";position:absolute;left:0;color:var(--accent);font-family:var(--display);font-weight:700}
   .content a.inline{color:var(--fg);border-bottom:1px solid var(--line);transition:border-color .15s}
-  .content a.inline:hover{border-bottom-color:var(--fg)}
-  .ph{color:var(--fg);background:rgba(255,255,255,0.05);border-bottom:1px dashed #5a5a5a;padding:1px 5px;border-radius:2px;font-style:normal}
+  .content a.inline:hover{border-bottom-color:var(--accent);color:var(--accent)}
+  .ph{color:#fff;background:rgba(231,76,60,0.13);border-bottom:1px dashed var(--accent);padding:1px 5px;border-radius:2px;font-style:normal}
 
   /* FOOTER */
   footer{border-top:1px solid var(--line-soft);padding:42px 0}
   .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
   .foot-brand{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:0.02em}
   .foot-links{display:flex;gap:22px;flex-wrap:wrap}
-  .foot-links a{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
-  .foot-links a:hover{color:var(--fg)}
+  .foot-links a{font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);transition:color .18s,text-shadow .18s}
+  .foot-links a:hover{color:var(--accent);text-shadow:0 0 12px var(--accent-glow)}
   .foot-fine{font-size:12px;color:var(--faint);margin-top:24px}
 
   @media (max-width:860px){
@@ -96,6 +97,20 @@
     .toc .toc-title{padding-left:0}
   }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  /* ---------- COOKIE NOTICE ---------- */
+  .cookie-bar{position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(20,20,22,0.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:18px 0;transform:translateY(120%);transition:transform .35s ease}
+  .cookie-bar.show{transform:none}
+  .cookie-inner{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:space-between}
+  .cookie-text{font-size:13px;color:var(--muted);max-width:74ch;line-height:1.6;font-weight:400}
+  .cookie-text a{color:var(--accent);border-bottom:1px solid transparent;transition:border-color .15s}
+  .cookie-text a:hover{border-bottom-color:var(--accent)}
+  .cookie-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .cookie-btn{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;padding:11px 22px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;transition:border-color .18s,box-shadow .18s,background .18s,color .18s}
+  .cookie-btn:hover{border-color:var(--accent);box-shadow:0 0 18px var(--accent-soft)}
+  .cookie-btn.accept{background:var(--accent);border-color:var(--accent);color:#fff}
+  .cookie-btn.accept:hover{box-shadow:0 0 22px var(--accent-glow)}
+  @media (max-width:860px){.cookie-actions{width:100%}.cookie-btn{flex:1;text-align:center}}
 </style>
 </head>
 <body>
@@ -120,15 +135,10 @@
     <p class="eyebrow">Legal</p>
     <h1>Privacy Policy</h1>
     <div class="doc-meta">
-      <span>Last updated: <b><span class="ph">[DATE]</span></b></span>
+      <span>Last updated: <b>January 01, 2026</b></span>
       <span>Applies to: <b>fightfax.info</b></span>
     </div>
-    <p class="doc-intro">This Privacy Policy explains how <span class="ph">[LEGAL ENTITY NAME]</span> ("FightFax", "we", "us", "our") handles information when you visit fightfax.info (the "Site"). The Site is an informational resource about FightFax. It is separate from the main platform at fightfax.com, which operates under its own terms and privacy policy.</p>
-
-    <!-- DRAFT NOTICE: delete this entire block before publishing -->
-    <div class="draft-notice" id="draftNotice">
-      <b>Template for review.</b> Replace every highlighted field, confirm the data practices match your live setup (host, email provider, analytics), have it reviewed by counsel, then remove this notice.
-    </div>
+    <p class="doc-intro">This Privacy Policy explains how FightFax LLC ("FightFax", "we", "us", "our") handles information when you visit fightfax.info (the "Site"). The Site is a purely informational resource that supports the main platform at fightfax.com, which operates under its own terms and privacy policy.</p>
   </div>
 </section>
 
@@ -138,7 +148,7 @@
       <div class="toc-title">Contents</div>
       <a href="#who">1. Who we are</a>
       <a href="#short">2. The short version</a>
-      <a href="#collect">3. Information we collect</a>
+      <a href="#collect">3. Information and cookies</a>
       <a href="#use">4. How we use information</a>
       <a href="#basis">5. Legal bases</a>
       <a href="#newsletter">6. The newsletter</a>
@@ -156,7 +166,7 @@
     <main class="content">
       <section id="who">
         <h2><span class="num">1</span>Who we are</h2>
-        <p>The Site is operated by <span class="ph">[LEGAL ENTITY NAME]</span>, registered at <span class="ph">[REGISTERED ADDRESS]</span>, operating from <span class="ph">[COUNTRY OF OPERATION, e.g. Vietnam]</span>.</p>
+        <p>The Site is operated by FightFax LLC ("FightFax"), operating from the United States and Singapore.</p>
         <p>For privacy questions, contact us at <a class="inline" href="mailto:info@fightfaxrecords.com">info@fightfaxrecords.com</a>.</p>
         <p>For visitors in the European Economic Area and the United Kingdom, we act as the data controller for the personal data described in this policy.</p>
       </section>
@@ -167,21 +177,23 @@
           <li>This Site is informational. You do not need an account to use it.</li>
           <li>The only personal data you actively give us is your email address, and only if you choose to subscribe to our newsletter or email us.</li>
           <li>We do not sell or rent your personal data.</li>
-          <li>As currently built, the Site does not set cookies or run third-party analytics. <span class="ph">[If you add analytics or embeds, update Sections 3 and 6 and add a cookie notice.]</span></li>
+          <li>The Site uses essential cookies and, with your consent, Google Analytics cookies. You can accept or decline non-essential cookies through the cookie banner.</li>
         </ul>
       </section>
 
       <section id="collect">
-        <h2><span class="num">3</span>Information we collect</h2>
+        <h2><span class="num">3</span>Information and cookies we collect</h2>
         <h3>Information you provide</h3>
         <ul>
           <li>Email address: if you submit it to subscribe to the newsletter, or if you email us directly, we receive your address and the content of your message.</li>
         </ul>
         <h3>Information collected automatically</h3>
         <ul>
-          <li>Server logs: our hosting provider <span class="ph">[HOSTING PROVIDER]</span> may record standard technical information such as IP address, browser type, device, and pages requested, to operate and secure the Site. <span class="ph">[Confirm what your host logs and for how long.]</span></li>
-          <li>Cookies and analytics: the Site does not set cookies or run analytics by default. <span class="ph">[If you add a tool such as Google Analytics or Plausible, name it here, state what it collects, and add a cookie banner.]</span></li>
+          <li>Server logs: our hosting provider, Amazon Web Services (AWS), may record standard technical information such as IP address, browser type, device, and pages requested, in order to operate and secure the Site. These logs are retained for a limited period and then deleted.</li>
+          <li>Analytics: we use Google Analytics to understand how visitors use the Site. It sets cookies that collect information such as a truncated IP address, device and browser type, pages viewed, and general usage patterns, with IP anonymization enabled. Analytics run only if you accept analytics cookies. You can opt out using the <a class="inline" href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics opt-out add-on</a>, and Google's handling is described in its <a class="inline" href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</li>
         </ul>
+        <h3>Cookies</h3>
+        <p>The Site uses a small number of cookies. Essential cookies remember your cookie choice and keep the Site working. Analytics cookies, set by Google Analytics, help us measure and improve how the Site is used. When you first visit, a banner lets you accept or decline non-essential cookies, and you can change your choice at any time by clearing this Site's cookies or by blocking cookies in your browser settings.</p>
       </section>
 
       <section id="use">
@@ -205,9 +217,8 @@
 
       <section id="newsletter">
         <h2><span class="num">6</span>The newsletter</h2>
-        <p>We manage subscriptions and send emails using <span class="ph">[EMAIL PROVIDER, e.g. Mailchimp, Beehiiv, Substack]</span>. Your email address is shared with that provider for this purpose and is handled under their privacy terms. <span class="ph">[Add provider link.]</span></p>
+        <p>We manage subscriptions and send emails using <a class="inline" href="https://mailchimp.com/legal/privacy/" target="_blank" rel="noopener">Mailchimp</a>, a service provided by Intuit. Your email address is shared with Mailchimp only to manage the mailing list and deliver our emails, and is handled under their privacy terms.</p>
         <p>Every newsletter email includes an unsubscribe link. You can also email <a class="inline" href="mailto:info@fightfaxrecords.com">info@fightfaxrecords.com</a> to be removed.</p>
-        <p><span class="ph">[If the newsletter still uses the email-only signup with no provider, replace the two paragraphs above with: "Subscription requests currently reach us by email and are stored only in our inbox until we add you to the list or you ask to be removed."]</span></p>
       </section>
 
       <section id="sharing">
@@ -221,7 +232,7 @@
 
       <section id="transfers">
         <h2><span class="num">8</span>International transfers</h2>
-        <p>We operate from <span class="ph">[COUNTRY OF OPERATION]</span>. If you are in the EEA or UK, your data may be transferred to and processed in countries outside your own, which may have different data protection laws. Where required, we rely on appropriate safeguards such as standard contractual clauses. <span class="ph">[Confirm the transfer mechanism with counsel, given the operating country.]</span></p>
+        <p>We operate from the United States and Singapore, and our service providers (including AWS, Google, and Mailchimp) may process data in the United States and other countries. If you are in the EEA or UK, your data may be transferred to and processed in countries outside your own, which may have different data protection laws. Where required, we rely on appropriate safeguards such as the European Commission's standard contractual clauses.</p>
       </section>
 
       <section id="retention">
@@ -242,7 +253,7 @@
 
       <section id="children">
         <h2><span class="num">11</span>Children</h2>
-        <p>The Site is not directed to children under <span class="ph">[16]</span>. We do not knowingly collect personal data from children. If you believe a child has provided us data, contact us and we will delete it.</p>
+        <p>The Site is not directed to children under 16. We do not knowingly collect personal data from children. If you believe a child has provided us data, contact us and we will delete it.</p>
       </section>
 
       <section id="security">
@@ -265,6 +276,16 @@
         <p>Questions about this policy or your data: <a class="inline" href="mailto:info@fightfaxrecords.com">info@fightfaxrecords.com</a>.</p>
       </section>
     </main>
+  </div>
+</div>
+
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-label="Cookie notice" aria-live="polite">
+  <div class="wrap cookie-inner">
+    <p class="cookie-text">We use essential cookies to run this Site and, with your consent, Google Analytics cookies to understand how it is used. Read our <a href="privacy.html#collect">cookie and privacy notice</a>.</p>
+    <div class="cookie-actions">
+      <button class="cookie-btn" id="cookieDecline">Decline</button>
+      <button class="cookie-btn accept" id="cookieAccept">Accept</button>
+    </div>
   </div>
 </div>
 
@@ -291,6 +312,26 @@
   toggle.addEventListener('click',function(){links.classList.toggle('open');});
   document.getElementById('yr').textContent=new Date().getFullYear();
 
+  // Cookie consent + gated Google Analytics
+  (function(){
+    var GA_MEASUREMENT_ID = ""; // paste your GA4 ID here (e.g. "G-XXXXXXXXXX") to enable analytics
+    var bar=document.getElementById('cookieBar');
+    function get(){try{return localStorage.getItem('ff_cookie_consent');}catch(e){return null;}}
+    function set(v){try{localStorage.setItem('ff_cookie_consent',v);}catch(e){}}
+    function loadGA(){
+      if(!GA_MEASUREMENT_ID) return;
+      var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA_MEASUREMENT_ID;document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;
+      gtag('js',new Date());gtag('config',GA_MEASUREMENT_ID,{anonymize_ip:true});
+    }
+    var c=get();
+    if(c==='accepted'){loadGA();}
+    else if(c!=='declined' && bar){setTimeout(function(){bar.classList.add('show');},600);}
+    var a=document.getElementById('cookieAccept'),d=document.getElementById('cookieDecline');
+    if(a)a.addEventListener('click',function(){set('accepted');if(bar)bar.classList.remove('show');loadGA();});
+    if(d)d.addEventListener('click',function(){set('declined');if(bar)bar.classList.remove('show');});
+  })();
+
   // Scrollspy for TOC
   var tocLinks=document.querySelectorAll('.toc a');
   var sections=Array.prototype.map.call(tocLinks,function(a){return document.querySelector(a.getAttribute('href'));});
@@ -303,5 +344,6 @@
   },{rootMargin:'-30% 0px -60% 0px'});
   sections.forEach(function(s){if(s)spy.observe(s);});
 </script>
+
 </body>
 </html>
