@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<title>Investor Relations — FightFax</title>
+<meta name="description" content="Invest in the official record keeper for the sport of boxing. Detailed materials are shared with qualified investors in a secure data room.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--fg:#fff;--muted:#9a9a9a;--faint:#6b6b6b;--card:#141414;--card-2:#0e0e0e;
+--line:#262626;--line-soft:#1a1a1a;--invert-bg:#fff;--invert-fg:#000;--maxw:1180px;
+--display:'Space Grotesk','Helvetica Neue',Arial,sans-serif;--mono:'Space Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--mono);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+h1,h2,h3,.display{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.04}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:0.02em;display:flex;align-items:center;gap:11px}
+.brand-mark{width:24px;height:24px;border-radius:3px;display:block}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);transition:color .15s}
+.nav-links a:hover{color:var(--fg)}
+.nav-cta{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;background:var(--invert-bg);color:var(--invert-fg);padding:10px 16px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--invert-bg);transition:.15s}
+.nav-cta:hover{background:transparent;color:var(--fg)}
+.menu-toggle{display:none;background:none;border:1px solid var(--line);color:var(--fg);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;padding:8px 12px;cursor:pointer}
+.hero{position:relative;padding:96px 0 80px;border-bottom:1px solid var(--line-soft);overflow:hidden}
+.hero .ghost{position:absolute;right:-3%;top:-8%;font-family:var(--display);font-weight:700;font-size:30vw;line-height:.8;color:#0b0b0b;pointer-events:none;user-select:none}
+.eyebrow{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint)}
+.hero h1{font-size:clamp(36px,5.6vw,68px);max-width:16ch;margin:20px 0 0}
+.hero .lede{font-size:clamp(15px,1.5vw,18px);color:var(--muted);max-width:60ch;margin:24px 0 0}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.btn{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;padding:16px 26px;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--fg);transition:all .18s;cursor:pointer;background:transparent;color:var(--fg)}
+.btn .arrow{font-family:var(--display);font-size:15px}
+.btn-primary{background:var(--invert-bg);color:var(--invert-fg);border-color:var(--invert-bg)}
+.btn-primary:hover{background:transparent;color:var(--fg);border-color:var(--fg);gap:16px}
+.btn-ghost:hover{border-color:var(--fg);gap:16px}
+.hero-note{font-size:12px;color:var(--faint);margin-top:20px}
+section.block{padding:84px 0;border-bottom:1px solid var(--line-soft)}
+.sec-eyebrow{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.sec-head{font-size:clamp(28px,3.6vw,46px);max-width:20ch}
+.sec-sub{color:var(--muted);max-width:66ch;margin-top:16px;font-size:15px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.card{background:var(--card);border:1px solid var(--line);padding:28px 26px;transition:transform .18s,border-color .18s,background .18s}
+.card:hover{transform:translateY(-4px);border-color:#3a3a3a;background:#181818}
+.card h3{font-family:var(--display);font-weight:700;font-size:19px;margin-bottom:11px}
+.card p{color:var(--muted);font-size:14px}
+.stats{display:flex;flex-wrap:wrap;gap:0;margin-top:42px;border:1px solid var(--line)}
+.stat{flex:1;min-width:160px;padding:30px 26px;border-right:1px solid var(--line-soft);transition:background .18s}
+.stat:last-child{border-right:none}
+.stat:hover{background:#121212}
+.stat .big{font-family:var(--display);font-weight:700;font-size:clamp(34px,4vw,48px);letter-spacing:-0.03em;display:block}
+.stat .k{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-top:10px;display:block;line-height:1.4}
+.room{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:40px}
+.room-list{list-style:none}
+.room-list li{padding:16px 0 16px 26px;border-top:1px solid var(--line-soft);position:relative;color:var(--muted)}
+.room-list li:first-child{border-top:none}
+.room-list li::before{content:"\2713";position:absolute;left:0;color:var(--fg);font-family:var(--display);font-weight:700}
+.room-list li b{color:var(--fg);font-weight:700;font-family:var(--display)}
+.room-panel{border:1px solid var(--line);background:var(--card-2);padding:40px 34px;text-align:center}
+.room-panel img{width:56px;height:56px;border-radius:6px;margin:0 auto 22px;display:block}
+.room-panel h3{font-size:22px;margin-bottom:10px}
+.room-panel p{color:var(--muted);font-size:13.5px;margin-bottom:24px}
+.room-panel .btn{width:100%;justify-content:center}
+.room-panel .req{font-size:12px;color:var(--faint);margin-top:16px}
+.room-panel .req a{color:var(--fg);border-bottom:1px solid var(--line)}
+.room-panel .req a:hover{border-color:var(--fg)}
+.cta-final{padding:96px 0;text-align:center}
+.cta-final h2{font-size:clamp(28px,4vw,52px);max-width:20ch;margin:0 auto}
+.cta-final p{color:var(--muted);margin-top:18px}
+.cta-final .btn{margin-top:32px}
+.contact-row{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:44px;padding-top:30px;border-top:1px solid var(--line-soft)}
+.contact-item .lab{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)}
+.contact-item .val{font-size:15px;margin-top:6px}
+.contact-item a:hover{text-decoration:underline}
+footer{border-top:1px solid var(--line-soft);padding:42px 0}
+.foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+.foot-brand{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:0.02em}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+.foot-links a:hover{color:var(--fg)}
+.foot-fine{font-size:12px;color:var(--faint);margin-top:24px}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+@media (max-width:860px){.nav-links{display:none}.menu-toggle{display:inline-block}
+.nav-links.open{display:flex;position:absolute;top:64px;left:0;right:0;background:#000;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 0}
+.nav-links.open a{padding:14px 28px;width:100%}.nav-links.open .nav-cta{margin:10px 28px;justify-content:center}
+.grid-2,.room{grid-template-columns:1fr}.hero .ghost{display:none}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap nav-inner">
+<a href="index.html" class="brand"><img src="logo.png" class="brand-mark" alt="FightFax">FIGHT FAX</a>
+<nav class="nav-links" id="navLinks">
+<a href="index.html">Home</a><a href="index.html#do">What We Do</a><a href="index.html#model">The Model</a><a href="index.html#contact">Contact</a>
+<a class="nav-cta" href="https://fightfax.com" target="_blank" rel="noopener">FightFax.com &rarr;</a>
+</nav>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">MENU</button>
+</div></header>
+
+<section class="hero">
+<span class="ghost" aria-hidden="true">FF</span>
+<div class="wrap">
+<p class="eyebrow reveal">Investor Relations</p>
+<h1 class="reveal">Own a position in boxing's data layer.</h1>
+<p class="lede reveal">FightFax is the official record keeper for professional boxing, operating since 1984 and recognized by the Association of Boxing Commissions since 2005. We are raising a seed round to turn institutional recognition into recurring, paid infrastructure.</p>
+<div class="cta-row reveal">
+<button class="btn btn-primary" id="heroRoom">Enter the investor data room <span class="arrow">&rarr;</span></button>
+<a class="btn btn-ghost" href="#why">Why invest</a>
+</div>
+<p class="hero-note reveal">Detailed financials, the round, and partner information are shared with qualified investors in a secure, access-controlled data room.</p>
+</div>
+</section>
+
+<section class="block" id="why">
+<div class="wrap">
+<p class="sec-eyebrow reveal">Why Invest</p>
+<h2 class="sec-head reveal">A forty-year institution with an early-stage upside.</h2>
+<p class="sec-sub reveal">The case is institutional, not a traffic curve. The brand and database compound, and the regulatory relationships are difficult to replicate.</p>
+<div class="grid-2">
+<div class="card reveal"><h3>An institutional moat</h3><p>Forty years of records cannot be rebuilt quickly. Sole official record-keeper recognition from the ABC since 2005, and a sanctioning-body alignment with the WBA in 2024.</p></div>
+<div class="card reveal"><h3>Safety-critical infrastructure</h3><p>This is a safety system before it is a database. Suspensions, medical holds, and complete fight histories are the data regulators and matchmakers depend on.</p></div>
+<div class="card reveal"><h3>A model that fits</h3><p>Commissions report for free. The parties that depend on verified records pay. Recurring institutional revenue, not a consumer traffic gamble.</p></div>
+<div class="card reveal"><h3>Timing</h3><p>Capital and regulation are converging on a single verified standard for boxing. The dual-registry status quo is breaking.</p></div>
+</div>
+</div>
+</section>
+
+<section class="block">
+<div class="wrap">
+<p class="sec-eyebrow reveal">The Institution, Measured</p>
+<h2 class="sec-head reveal">The traction that is already real.</h2>
+<div class="stats reveal">
+<div class="stat"><span class="big">40+</span><span class="k">Years of operating history</span></div>
+<div class="stat"><span class="big">1M+</span><span class="k">Fighters tracked</span></div>
+<div class="stat"><span class="big">145+</span><span class="k">Commissions reporting</span></div>
+<div class="stat"><span class="big">99%+</span><span class="k">Records backed by documents</span></div>
+</div>
+</div>
+</section>
+
+<section class="block">
+<div class="wrap">
+<p class="sec-eyebrow reveal">The Data Room</p>
+<h2 class="sec-head reveal">What qualified investors receive.</h2>
+<div class="room">
+<ul class="room-list reveal">
+<li><b>The full investor briefing.</b> The opportunity, the model, the revenue architecture, and the partnership strategy.</li>
+<li><b>The five-year financial model.</b> Revenue build, profitability, cost structure, and the path to break-even.</li>
+<li><b>The valuation analysis.</b> Asset, market, and DCF methods, triangulated to a pre-money range.</li>
+<li><b>The round and use of funds.</b> The raise, the terms, and where the capital goes.</li>
+<li><b>Partner and capital relationships.</b> Institutional alignments and regional capital, named to qualified investors.</li>
+</ul>
+<div class="room-panel reveal">
+<img src="logo.png" alt="FightFax">
+<h3>Request access</h3>
+<p>Materials are released through a secure data room with verified access and viewer-level controls.</p>
+<button class="btn btn-primary" id="panelRoom">Enter the data room <span class="arrow">&rarr;</span></button>
+<p class="req">Do not have a link yet? <a href="mailto:info@fightfaxrecords.com?subject=Investor%20data%20room%20access%20request&body=Please%20send%20me%20access%20to%20the%20FightFax%20investor%20data%20room.%20Name%20%2F%20firm%3A%20">Request one here</a>.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta-final">
+<div class="wrap">
+<p class="sec-eyebrow reveal" style="margin-bottom:22px">Grow With Us</p>
+<h2 class="reveal">The definitive record of the sport, and the business behind it.</h2>
+<p class="reveal">Reach the team for diligence materials, partnership terms, or an introduction.</p>
+<button class="btn btn-primary reveal" id="ctaRoom">Enter the investor data room <span class="arrow">&rarr;</span></button>
+<div class="contact-row reveal">
+<div class="contact-item"><div class="lab">Investor enquiries</div><div class="val"><a href="mailto:info@fightfaxrecords.com">info@fightfaxrecords.com</a></div></div>
+<div class="contact-item"><div class="lab">Main platform</div><div class="val"><a href="https://fightfax.com" target="_blank" rel="noopener">fightfax.com</a></div></div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="wrap foot-inner"><span class="foot-brand">FIGHT FAX</span>
+<nav class="foot-links">
+<a href="index.html">Home</a><a href="https://fightfax.com" target="_blank" rel="noopener">FightFax.com</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="investors.html">Investor Relations</a><a href="mailto:info@fightfaxrecords.com">Contact</a>
+</nav></div>
+<div class="wrap"><p class="foot-fine">FightFax is the official record keeper for the sport of boxing, operating since 1984. &copy; <span id="yr"></span> FightFax. All rights reserved.</p></div>
+</footer>
+
+<script>
+/* =========================================================
+   PASTE YOUR DATA ROOM LINK BELOW (Papermark, DocSend, etc.)
+   Leave it empty to route the buttons to an email access request.
+   ========================================================= */
+var DATA_ROOM_URL = "https://www.papermark.com/view/cmqdid8gs0001jm04jwnvu7zu";
+
+var REQUEST_MAILTO = "mailto:info@fightfaxrecords.com?subject=Investor%20data%20room%20access%20request&body=Please%20send%20me%20access%20to%20the%20FightFax%20investor%20data%20room.%20Name%20%2F%20firm%3A%20";
+function openRoom(){
+  if(DATA_ROOM_URL && DATA_ROOM_URL.trim()){ window.open(DATA_ROOM_URL.trim(),'_blank','noopener'); }
+  else { window.location.href=REQUEST_MAILTO; }
+}
+['heroRoom','panelRoom','ctaRoom'].forEach(function(id){var b=document.getElementById(id);if(b)b.addEventListener('click',openRoom);});
+
+var toggle=document.getElementById('menuToggle'),links=document.getElementById('navLinks');
+toggle.addEventListener('click',function(){links.classList.toggle('open');});
+links.addEventListener('click',function(e){if(e.target.tagName==='A')links.classList.remove('open');});
+document.getElementById('yr').textContent=new Date().getFullYear();
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>
