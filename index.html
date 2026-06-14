@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FightFax — The Definitive Record Keeper for the Sport of Boxing</title>
+<meta name="description" content="FightFax keeps the official record of professional boxing. Verified bouts, tracked suspensions, and a complete fight history, built on commission reports and kept for the safety of the sport.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#000000;
+    --fg:#ffffff;
+    --muted:#9a9a9a;
+    --faint:#6b6b6b;
+    --card:#141414;
+    --card-2:#0e0e0e;
+    --line:#262626;
+    --line-soft:#1a1a1a;
+    --invert-bg:#ffffff;
+    --invert-fg:#000000;
+    --maxw:1180px;
+    --display:'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --mono:'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--mono);
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  h1,h2,h3,.display{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.02}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(0,0,0,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:0.02em;display:flex;align-items:center;gap:9px}
+  .brand .dot{width:9px;height:9px;background:var(--fg);display:inline-block}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);transition:color .15s}
+  .nav-links a:hover{color:var(--fg)}
+  .nav-cta{
+    font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+    background:var(--invert-bg);color:var(--invert-fg);
+    padding:10px 16px;display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--invert-bg);transition:background .15s,color .15s;
+  }
+  .nav-cta:hover{background:transparent;color:var(--fg)}
+  .nav-cta .arrow{font-family:var(--display)}
+  .menu-toggle{display:none;background:none;border:1px solid var(--line);color:var(--fg);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;padding:8px 12px;cursor:pointer}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:104px 0 96px;border-bottom:1px solid var(--line-soft);overflow:hidden}
+  .hero .ghost{
+    position:absolute;right:-4%;top:-6%;font-family:var(--display);font-weight:700;
+    font-size:30vw;line-height:.8;color:#0b0b0b;letter-spacing:-0.04em;pointer-events:none;user-select:none;white-space:nowrap;
+  }
+  .eyebrow{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint)}
+  .hero h1{font-size:clamp(38px,6.2vw,76px);max-width:14ch;margin:22px 0 0}
+  .hero p.lede{font-size:clamp(15px,1.5vw,18px);color:var(--muted);max-width:60ch;margin:26px 0 0}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+  .btn{
+    font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
+    padding:15px 24px;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--fg);transition:all .15s;cursor:pointer
+  }
+  .btn-primary{background:var(--invert-bg);color:var(--invert-fg);border-color:var(--invert-bg)}
+  .btn-primary:hover{background:transparent;color:var(--fg);border-color:var(--fg)}
+  .btn-ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--fg)}
+  .btn .arrow{font-family:var(--display);font-size:15px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:28px;margin-top:54px;padding-top:26px;border-top:1px solid var(--line-soft)}
+  .hero-meta .m{font-size:12px;letter-spacing:0.06em;color:var(--faint);text-transform:uppercase}
+  .hero-meta .m b{color:var(--fg);font-family:var(--display);font-weight:700;letter-spacing:0}
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{padding:96px 0;border-bottom:1px solid var(--line-soft)}
+  .sec-eyebrow{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint);margin-bottom:18px}
+  .sec-head{font-size:clamp(30px,4vw,50px);max-width:18ch}
+  .sec-sub{color:var(--muted);max-width:64ch;margin-top:18px;font-size:15px}
+
+  /* ---------- CARD GRID ---------- */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:46px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+  .card{background:var(--card);border:1px solid var(--line);padding:30px 28px}
+  .card h3{font-family:var(--display);font-weight:700;font-size:20px;margin-bottom:12px;letter-spacing:-0.01em}
+  .card p{color:var(--muted);font-size:14px}
+  .card .ic{width:34px;height:34px;margin-bottom:18px;display:block}
+  .card .ic svg{width:34px;height:34px;fill:var(--fg)}
+
+  /* ---------- TIMELINE ---------- */
+  .tl{margin-top:50px}
+  .tl-track{display:flex;gap:8px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .tl-year{
+    flex:1;background:none;border:none;border-right:1px solid var(--line-soft);
+    color:var(--faint);font-family:var(--display);font-weight:700;font-size:clamp(18px,2.4vw,30px);
+    padding:22px 10px;cursor:pointer;transition:color .15s,background .15s;text-align:left;letter-spacing:-0.01em
+  }
+  .tl-year:last-child{border-right:none}
+  .tl-year .lbl{display:block;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--faint);margin-top:8px}
+  .tl-year:hover{color:var(--fg)}
+  .tl-year.active{background:var(--invert-bg);color:var(--invert-fg)}
+  .tl-year.active .lbl{color:#333}
+  .tl-panel{margin-top:28px;background:var(--card);border:1px solid var(--line);padding:34px 30px;min-height:150px}
+  .tl-panel h3{font-family:var(--display);font-weight:700;font-size:24px;margin-bottom:14px}
+  .tl-panel p{color:var(--muted);font-size:15px;max-width:70ch}
+  .tl-panel.fade{animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* ---------- VERIFICATION STEPPER ---------- */
+  .vf{margin-top:50px}
+  .vf-steps{display:flex;gap:0;border:1px solid var(--line);background:var(--card-2)}
+  .vf-step{
+    flex:1;border-right:1px solid var(--line);padding:22px 16px;cursor:pointer;
+    transition:background .15s;position:relative
+  }
+  .vf-step:last-child{border-right:none}
+  .vf-step .n{font-family:var(--display);font-weight:700;font-size:13px;color:var(--faint);transition:color .15s}
+  .vf-step .t{font-family:var(--display);font-weight:600;font-size:15px;margin-top:10px;line-height:1.2;transition:color .15s}
+  .vf-step:hover{background:var(--card)}
+  .vf-step.active{background:var(--invert-bg)}
+  .vf-step.active .n{color:#444}
+  .vf-step.active .t{color:var(--invert-fg)}
+  .vf-detail{margin-top:24px;background:var(--card);border:1px solid var(--line);padding:30px}
+  .vf-detail h3{font-family:var(--display);font-weight:700;font-size:22px;margin-bottom:12px}
+  .vf-detail p{color:var(--muted);font-size:15px;max-width:72ch}
+
+  /* ---------- STATS ---------- */
+  .stats{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-auto-rows:1fr;gap:18px;margin-top:46px}
+  .stat{background:var(--card);border:1px solid var(--line);padding:30px 28px;display:flex;flex-direction:column;justify-content:center}
+  .stat.feature{background:var(--invert-bg);color:var(--invert-fg);grid-row:span 2;justify-content:center}
+  .stat .big{font-family:var(--display);font-weight:700;font-size:clamp(40px,6vw,82px);line-height:.92;letter-spacing:-0.03em}
+  .stat .k{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;margin-top:14px}
+  .stat .d{font-size:13px;color:var(--muted);margin-top:10px}
+  .stat.feature .d{color:#555}
+  .stat-note{font-size:12px;color:var(--faint);margin-top:20px;font-style:italic;max-width:80ch}
+
+  /* ---------- OBLIGATION / RESTRICTION ---------- */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:46px}
+  .panel{background:var(--card);border:1px solid var(--line);padding:34px 30px}
+  .panel h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:12px}
+  .panel ul{list-style:none}
+  .panel li{color:var(--muted);font-size:14px;padding:11px 0;border-top:1px solid var(--line-soft);padding-left:22px;position:relative}
+  .panel li:first-of-type{border-top:none}
+  .panel li::before{content:"›";position:absolute;left:0;color:var(--fg);font-family:var(--display);font-weight:700}
+
+  /* ---------- MODEL ---------- */
+  .model-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:46px}
+  .model-card{border:1px solid var(--line);padding:34px 30px}
+  .model-card.free{background:var(--invert-bg);color:var(--invert-fg)}
+  .model-card .tag{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)}
+  .model-card.free .tag{color:#555}
+  .model-card h3{font-family:var(--display);font-weight:700;font-size:24px;margin:12px 0 14px}
+  .model-card p{font-size:14px;color:var(--muted)}
+  .model-card.free p{color:#333}
+  .streams{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+  .stream{border:1px solid var(--line);background:var(--card);padding:22px 20px}
+  .stream .sn{font-family:var(--display);font-weight:700;font-size:15px;margin-bottom:8px}
+  .stream p{font-size:13px;color:var(--muted)}
+
+  /* ---------- NEWSLETTER ---------- */
+  .news{background:var(--card-2);border:1px solid var(--line);padding:54px 44px;margin-top:10px}
+  .news h2{font-size:clamp(26px,3.4vw,40px);max-width:20ch}
+  .news p{color:var(--muted);margin-top:14px;max-width:58ch;font-size:15px}
+  .news-form{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;max-width:560px}
+  .news-form input{
+    flex:1;min-width:240px;background:#000;border:1px solid var(--line);color:var(--fg);
+    font-family:var(--mono);font-size:14px;padding:15px 16px;outline:none;transition:border .15s
+  }
+  .news-form input:focus{border-color:var(--fg)}
+  .news-form input::placeholder{color:var(--faint)}
+  .news-msg{margin-top:16px;font-size:13px;color:var(--muted);min-height:18px}
+  .news-msg.ok{color:var(--fg)}
+  .news-note{font-size:12px;color:var(--faint);margin-top:14px;font-style:italic}
+
+  /* ---------- CONTACT / BIG CTA ---------- */
+  .cta-final{padding:104px 0;text-align:center}
+  .cta-final .ql{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,56px);max-width:22ch;margin:0 auto;line-height:1.06}
+  .cta-final .sub{color:var(--muted);margin-top:22px;font-size:15px}
+  .cta-final .btn{margin-top:38px}
+  .contact-row{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:46px;padding-top:30px;border-top:1px solid var(--line-soft)}
+  .contact-item .lab{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)}
+  .contact-item .val{font-size:15px;margin-top:6px}
+  .contact-item a:hover{text-decoration:underline}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line-soft);padding:42px 0}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
+  .foot-brand{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:0.02em}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap}
+  .foot-links a{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
+  .foot-links a:hover{color:var(--fg)}
+  .foot-fine{font-size:12px;color:var(--faint);margin-top:24px}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .tl-panel.fade{animation:none}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    .nav-links{display:none}
+    .menu-toggle{display:inline-block}
+    .nav-links.open{display:flex;position:absolute;top:64px;left:0;right:0;background:#000;border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:8px 0}
+    .nav-links.open a{padding:14px 28px;width:100%}
+    .nav-links.open .nav-cta{margin:10px 28px;justify-content:center}
+    .grid-2,.grid-3,.duo,.model-grid{grid-template-columns:1fr}
+    .streams{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr}
+    .stat.feature{grid-row:auto}
+    .vf-steps{flex-direction:column}
+    .vf-step{border-right:none;border-bottom:1px solid var(--line)}
+    .vf-step:last-child{border-bottom:none}
+    .tl-track{flex-direction:column}
+    .tl-year{border-right:none;border-bottom:1px solid var(--line-soft)}
+    .tl-year:last-child{border-bottom:none}
+    .hero .ghost{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><span class="dot"></span>FIGHT FAX</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#why">Why We Exist</a>
+      <a href="#do">What We Do</a>
+      <a href="#history">History</a>
+      <a href="#accuracy">Accuracy</a>
+      <a href="#model">The Model</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="https://fightfax.com" target="_blank" rel="noopener">FightFax.com <span class="arrow">→</span></a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">MENU</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <span class="ghost" aria-hidden="true">FF</span>
+  <div class="wrap">
+    <p class="eyebrow reveal">Est. 1984 &nbsp;/&nbsp; The Official Boxing Record Keeper</p>
+    <h1 class="reveal">The Definitive Record Keeper for the Sport of Boxing.</h1>
+    <p class="lede reveal">FightFax keeps the official record of professional boxing. Verified bouts, tracked suspensions, and complete fight histories, built on commission reports and kept for the safety of the sport.</p>
+    <div class="hero-cta reveal">
+      <a class="btn btn-primary" href="https://fightfax.com" target="_blank" rel="noopener">Visit the main site <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="#why">Learn what we do</a>
+    </div>
+    <div class="hero-meta reveal">
+      <span class="m"><b>40+</b> years on record</span>
+      <span class="m"><b>1M+</b> fighters tracked</span>
+      <span class="m"><b>145+</b> commissions reporting</span>
+      <span class="m"><b>ABC</b> official recognition, 2005</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY WE EXIST -->
+<section class="block" id="why">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">Why We Exist</p>
+    <h2 class="sec-head reveal">Boxing's records were once a rumor.</h2>
+    <p class="sec-sub reveal">For most of the sport's history, there was no single trusted registry of professional bouts. Results lived in newspaper clippings and promoter memory. That gap was not only a record-keeping problem. It was a safety problem.</p>
+    <div class="grid-2">
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M3 4h18v4H3V4zm1 6h16v10H4V10zm6 3h4v2h-4v-2z"/></svg></span>
+        <h3>No central registry</h3>
+        <p>Pre-digital boxing had no single regulatory record. Results were scattered across clippings, promoters, and memory.</p>
+      </div>
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 5l7.5 13h-15L12 7zm-1 4v4h2v-4h-2zm0 5v2h2v-2h-2z"/></svg></span>
+        <h3>Faked and padded records</h3>
+        <p>Hidden knockout losses and invented wins were common. Records were collected, not kept.</p>
+      </div>
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 6 6 6c2 0 3.2 1.2 4 2.3C10.8 7.2 12 6 14 6c3.5 0 5 3 3.5 6C19 16.5 12 21 12 21z"/></svg></span>
+        <h3>Fighter safety at risk</h3>
+        <p>Without a complete bout and medical history, regulators could clear dangerous mismatches.</p>
+      </div>
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 016.32 12.9L5.1 5.68A7.96 7.96 0 0112 4zM4 12a8 8 0 01.68-3.23l13.55 13.55A8 8 0 014 12z"/></svg></span>
+        <h3>No accountability</h3>
+        <p>No audit trail meant no way to prove what a record should be, or to correct it with evidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="block" id="do">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">What We Do</p>
+    <h2 class="sec-head reveal">A record kept, not a record collected.</h2>
+    <p class="sec-sub reveal">FightFax is an official record system, not a fan database. A bout enters the record only when an official commission report confirms it. That single standard is the difference between a number and a fact.</p>
+    <div class="grid-3">
+      <div class="card reveal">
+        <h3>Verified bouts</h3>
+        <p>Every result is registered from an official commission report, checked, and kept with a complete audit trail.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Suspension tracking</h3>
+        <p>Medical holds, knockout suspensions, and bans are tracked across jurisdictions so they cannot be quietly ignored.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Complete histories</h3>
+        <p>Fighter profiles link generations of boxing across every weight class and era, with the true bout history attached.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE STANDARD -->
+<section class="block">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">The Standard We Keep</p>
+    <h2 class="sec-head reveal">Two approaches to one job.</h2>
+    <p class="sec-sub reveal">There is more than one honest way to build a record. FightFax chooses verification over speed. Both models below are legitimate. They simply answer to different masters.</p>
+    <div class="grid-2">
+      <div class="model-card free reveal">
+        <span class="tag">Commission verified</span>
+        <h3>The FightFax standard</h3>
+        <p>Official commission reports only. Approved, verified, and audit-trailed before publication. Slower to add, harder to dispute.</p>
+      </div>
+      <div class="card reveal" style="display:flex;flex-direction:column;justify-content:center">
+        <span class="tag" style="font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--faint)">Community sourced</span>
+        <h3 style="font-family:var(--display);font-weight:700;font-size:24px;margin:12px 0 14px">Open contribution</h3>
+        <p>Open editing from a broad contributor base. Faster coverage, with lighter verification on the way in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFICATION FLOW (interactive) -->
+<section class="block">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">How A Bout Becomes A Record</p>
+    <h2 class="sec-head reveal">Five steps. No shortcuts.</h2>
+    <p class="sec-sub reveal">Select a step to see what happens behind it. Nothing reaches the public record until it clears all five.</p>
+    <div class="vf reveal">
+      <div class="vf-steps" id="vfSteps">
+        <button class="vf-step active" data-i="0"><span class="n">01</span><span class="t">Submission</span></button>
+        <button class="vf-step" data-i="1"><span class="n">02</span><span class="t">Identity check</span></button>
+        <button class="vf-step" data-i="2"><span class="n">03</span><span class="t">Cross review</span></button>
+        <button class="vf-step" data-i="3"><span class="n">04</span><span class="t">Dual approval</span></button>
+        <button class="vf-step" data-i="4"><span class="n">05</span><span class="t">Publication</span></button>
+      </div>
+      <div class="vf-detail" id="vfDetail">
+        <h3>01 / Submission</h3>
+        <p>A commission submits the official bout report directly to the database. The report, not a third party, is the source of record.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ACCURACY MATTERS -->
+<section class="block" id="accuracy">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">Why Accuracy Matters</p>
+    <h2 class="sec-head reveal">This is a safety system before it is a database.</h2>
+    <p class="sec-sub reveal">A wrong record is not a typo in boxing. It is a fighter cleared for a fight they should never have taken. That is why the standard is strict.</p>
+    <div class="grid-2">
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9C1 9 2.5 6 6 6c2 0 3.2 1.2 4 2.3C10.8 7.2 12 6 14 6c3.5 0 5 3 3.5 6C19 16.5 12 21 12 21z"/></svg></span>
+        <h3>Suspension tracking</h3>
+        <p>Medical holds, brain bleeds, and orbital fractures are tracked across jurisdictions so a suspension in one place is visible everywhere.</p>
+      </div>
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M10 4a6 6 0 104.47 10.03l5.25 5.25 1.41-1.41-5.25-5.25A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"/></svg></span>
+        <h3>Hidden losses surfaced</h3>
+        <p>Concealed knockout defeats inflate a fighter's apparent level. A complete record shows what really happened.</p>
+      </div>
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2L3 6v6c0 5 3.8 8.7 9 10 5.2-1.3 9-5 9-10V6l-9-4zm0 2.2l7 3.1V12c0 3.9-2.8 6.8-7 8-4.2-1.2-7-4.1-7-8V7.3l7-3.1z"/></svg></span>
+        <h3>Mismatches prevented</h3>
+        <p>Regulators and matchmakers get the true experience gap between two fighters before a bout is sanctioned.</p>
+      </div>
+      <div class="card reveal">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 2a8 8 0 11-8 8 8 8 0 018-8zm-1 3v6l5 3 1-1.7-4-2.4V7z"/></svg></span>
+        <h3>Trauma patterns flagged</h3>
+        <p>Knockout frequency and bout-frequency patterns flag fighters who may be carrying excessive accumulated damage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY (interactive timeline) -->
+<section class="block" id="history">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">Our History</p>
+    <h2 class="sec-head reveal">Four decades of keeping the record straight.</h2>
+    <p class="sec-sub reveal">Select a year to read what changed. The through-line is constant: from collecting rumors to keeping official records.</p>
+    <div class="tl reveal">
+      <div class="tl-track" id="tlTrack">
+        <button class="tl-year active" data-i="0">1984<span class="lbl">The origin</span></button>
+        <button class="tl-year" data-i="1">1993<span class="lbl">Fight Fax born</span></button>
+        <button class="tl-year" data-i="2">2001<span class="lbl">Source of truth</span></button>
+        <button class="tl-year" data-i="3">2005<span class="lbl">Official recognition</span></button>
+        <button class="tl-year" data-i="4">2024<span class="lbl">WBA alignment</span></button>
+      </div>
+      <div class="tl-panel" id="tlPanel">
+        <h3>1984 / The Origin</h3>
+        <p>Ralph Citro, a cutman who worked more than 125 world title fights, turned archivist and founded Computer Boxing Update, later The Boxing Record Book. It was the first company to provide accurate record-keeping directly to boxing commissions, reconstructing roughly fifty years of missing bout-by-bout records from scratch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BY THE NUMBERS -->
+<section class="block">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">By The Numbers</p>
+    <h2 class="sec-head reveal">An institution, measured.</h2>
+    <div class="stats reveal">
+      <div class="stat feature">
+        <span class="big">1M+</span>
+        <span class="k">Fighters tracked</span>
+        <span class="d">Comprehensive profiles across every weight class and era, linking generations of boxing history.</span>
+      </div>
+      <div class="stat">
+        <span class="big">~1M</span>
+        <span class="k">Bouts logged and verified</span>
+      </div>
+      <div class="stat">
+        <span class="big">145+</span>
+        <span class="k">Commissions reporting</span>
+      </div>
+      <div class="stat">
+        <span class="big">99%+</span>
+        <span class="k">Backed by official documents</span>
+      </div>
+      <div class="stat">
+        <span class="big">40+</span>
+        <span class="k">Years of operating history</span>
+      </div>
+    </div>
+    <p class="stat-note reveal">Figures reflect the FightFax / Pro Boxing Records database. Bout counts are stated conservatively pending reconciliation across legacy and digital records. In 2005, commissioners at the ABC Convention in Las Vegas audited the records at 100% accuracy, which led to sole official record-keeper recognition from the Association of Boxing Commissions.</p>
+  </div>
+</section>
+
+<!-- WE ARE RECORD KEEPERS -->
+<section class="block">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">Our Role, Defined</p>
+    <h2 class="sec-head reveal">We are record keepers. Nothing more, and nothing less.</h2>
+    <p class="sec-sub reveal">The value of a record is that no one can buy it. FightFax keeps a clear line between what it does and what it will never do.</p>
+    <div class="duo">
+      <div class="panel reveal">
+        <h3>What we do</h3>
+        <ul>
+          <li>Record bouts only on official commission reports.</li>
+          <li>Track every change so it is verifiable and evidence-based.</li>
+          <li>Keep facts open, without filtering or bias.</li>
+          <li>Treat integrity as non-negotiable.</li>
+        </ul>
+      </div>
+      <div class="panel reveal">
+        <h3>What we do not do</h3>
+        <ul>
+          <li>We do not approve bouts, sanction fights, or set rankings.</li>
+          <li>We do not promote fighters or suppress losses.</li>
+          <li>We do not sell influence over records to any party.</li>
+          <li>We do not favor anyone.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MODEL -->
+<section class="block" id="model">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal">How We Stay Free For Commissions</p>
+    <h2 class="sec-head reveal">The side that supplies the data never pays for it.</h2>
+    <p class="sec-sub reveal">A record system only works if the people closest to the truth can report freely. So commissions and regulators, the supply side, always stay free. FightFax is funded by the parties who depend on verified records, not by the ones who provide them. That keeps the incentives clean.</p>
+    <div class="model-grid">
+      <div class="model-card free reveal">
+        <span class="tag">Always free</span>
+        <h3>Commissions and regulators</h3>
+        <p>State and national athletic commissions and sanctioning bodies submit bout and suspension data at no cost. Charging the supply side would only suppress the data the sport needs most.</p>
+      </div>
+      <div class="model-card reveal">
+        <span class="tag">Funds the platform</span>
+        <h3>The parties who rely on it</h3>
+        <p>Media, broadcasters, odds and integrity units, promoters, and professionals pay for verified access. They depend on the record being right, so they fund keeping it right.</p>
+      </div>
+    </div>
+    <div class="streams reveal">
+      <div class="stream"><div class="sn">Data licensing and API</div><p>Verified feeds for media, broadcasters, and integrity providers.</p></div>
+      <div class="stream"><div class="sn">Verification services</div><p>Pre-bout clearance and suspension cross-checks for promoters and matchmakers.</p></div>
+      <div class="stream"><div class="sn">Professional access</div><p>Managers, agents, and journalists who need the verified record as a working tool.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="block" id="newsletter">
+  <div class="wrap">
+    <div class="news reveal">
+      <h2>Stay on the record.</h2>
+      <p>News, data updates, and announcements from FightFax. No noise, sent only when there is something worth keeping.</p>
+      <div class="news-form">
+        <input type="email" id="newsEmail" placeholder="your@email.com" aria-label="Email address" autocomplete="email">
+        <button class="btn btn-primary" id="newsBtn">Subscribe</button>
+      </div>
+      <div class="news-msg" id="newsMsg" role="status"></div>
+      <p class="news-note">Subscribing opens your email app addressed to FightFax so you can confirm. We never share your address.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA / CONTACT -->
+<section class="cta-final" id="contact">
+  <div class="wrap">
+    <p class="sec-eyebrow reveal" style="margin-bottom:24px">The Record Lives Here</p>
+    <p class="ql reveal">The truth about a fighter's career should be one click away. That is what fightfax.com is for.</p>
+    <p class="sub reveal">Search fighters, bouts, and official records on the main platform.</p>
+    <a class="btn btn-primary reveal" href="https://fightfax.com" target="_blank" rel="noopener">Open FightFax.com <span class="arrow">→</span></a>
+    <div class="contact-row reveal">
+      <div class="contact-item">
+        <div class="lab">General enquiries</div>
+        <div class="val"><a href="mailto:info@fightfaxrecords.com">info@fightfaxrecords.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="lab">Main platform</div>
+        <div class="val"><a href="https://fightfax.com" target="_blank" rel="noopener">fightfax.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="lab">Newsletter</div>
+        <div class="val"><a href="#newsletter">Sign up for updates</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-inner">
+    <span class="foot-brand">FIGHT FAX</span>
+    <nav class="foot-links">
+      <a href="#why">Why We Exist</a>
+      <a href="#do">What We Do</a>
+      <a href="#history">History</a>
+      <a href="#model">The Model</a>
+      <a href="https://fightfax.com" target="_blank" rel="noopener">FightFax.com</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:info@fightfaxrecords.com">Contact</a>
+    </nav>
+  </div>
+  <div class="wrap">
+    <p class="foot-fine">FightFax is the official record keeper for the sport of boxing, operating since 1984. This site is an informational resource for fans, fighters, professionals, and the wider boxing community. &copy; <span id="yr"></span> FightFax. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  var toggle=document.getElementById('menuToggle');
+  var links=document.getElementById('navLinks');
+  toggle.addEventListener('click',function(){links.classList.toggle('open');});
+  links.addEventListener('click',function(e){if(e.target.tagName==='A')links.classList.remove('open');});
+
+  // Year
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  // Scroll reveal
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  // Verification stepper
+  var vfData=[
+    {h:"01 / Submission",p:"A commission submits the official bout report directly to the database. The report, not a third party, is the source of record."},
+    {h:"02 / Identity check",p:"Fighter identities, aliases, and sanctioning status are verified so the right bout attaches to the right person."},
+    {h:"03 / Cross review",p:"Active suspensions and medical bans are checked across jurisdictions before anything is accepted."},
+    {h:"04 / Dual approval",p:"Two verifiers must approve the entry, and every step is captured in a complete audit trail."},
+    {h:"05 / Publication",p:"The record is published globally, with instant notifications to anyone tracking that fighter."}
+  ];
+  var vfSteps=document.querySelectorAll('.vf-step');
+  var vfDetail=document.getElementById('vfDetail');
+  function setStep(i){
+    vfSteps.forEach(function(s){s.classList.toggle('active',+s.dataset.i===i);});
+    vfDetail.innerHTML='<h3>'+vfData[i].h+'</h3><p>'+vfData[i].p+'</p>';
+  }
+  vfSteps.forEach(function(s){s.addEventListener('click',function(){setStep(+s.dataset.i);});});
+
+  // Timeline
+  var tlData=[
+    {h:"1984 / The Origin",p:"Ralph Citro, a cutman who worked more than 125 world title fights, turned archivist and founded Computer Boxing Update, later The Boxing Record Book. It was the first company to provide accurate record-keeping directly to boxing commissions, reconstructing roughly fifty years of missing bout-by-bout records from scratch."},
+    {h:"1993 / Fight Fax Is Born",p:"Phill Marder, a CBU employee, purchased the active database and the Fight Fax name was born. It marked the vital shift from collecting rumors to keeping official records, with a new standard: a bout is registered only upon receipt of an official commission report."},
+    {h:"2001 / The Source Of Truth",p:"Anibal Miramontes, a former IBF Ratings Chairman, took over the company and ran a closed-door model where a single authority edits the database. The result was zero promotional influence and zero padded records. Integrity over popularity, fact over hype."},
+    {h:"2005 / Official Recognition",p:"At the ABC Convention in Las Vegas, commissioners audited the records for accuracy and found them at 100%. FightFax earned sole official record-keeper recognition from the Association of Boxing Commissions."},
+    {h:"2024 / WBA Alignment",p:"The World Boxing Association aligned with FightFax as a verified, independent record source, debuting the relationship at the WBA Asia Convention in Vietnam. It marked a renewed appetite across the sport for a single, audit-trailed standard."}
+  ];
+  var tlYears=document.querySelectorAll('.tl-year');
+  var tlPanel=document.getElementById('tlPanel');
+  function setYear(i){
+    tlYears.forEach(function(y){y.classList.toggle('active',+y.dataset.i===i);});
+    tlPanel.classList.remove('fade');void tlPanel.offsetWidth;tlPanel.classList.add('fade');
+    tlPanel.innerHTML='<h3>'+tlData[i].h+'</h3><p>'+tlData[i].p+'</p>';
+  }
+  tlYears.forEach(function(y){y.addEventListener('click',function(){setYear(+y.dataset.i);});});
+
+  // Newsletter (no backend: opens mail client addressed to FightFax)
+  var newsBtn=document.getElementById('newsBtn');
+  var newsEmail=document.getElementById('newsEmail');
+  var newsMsg=document.getElementById('newsMsg');
+  function validEmail(v){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);}
+  function subscribe(){
+    var v=newsEmail.value.trim();
+    if(!validEmail(v)){newsMsg.className='news-msg';newsMsg.textContent='Enter a valid email address to continue.';return;}
+    var subject=encodeURIComponent('Newsletter subscription');
+    var body=encodeURIComponent('Please add this address to the FightFax newsletter: '+v);
+    window.location.href='mailto:info@fightfaxrecords.com?subject='+subject+'&body='+body;
+    newsMsg.className='news-msg ok';newsMsg.textContent='Opening your email app to confirm your subscription.';
+  }
+  newsBtn.addEventListener('click',subscribe);
+  newsEmail.addEventListener('keydown',function(e){if(e.key==='Enter')subscribe();});
+</script>
+</body>
+</html>
