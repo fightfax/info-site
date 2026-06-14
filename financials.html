@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Financial Model — FightFax</title>
+<title>Financials - FightFax</title>
 <meta name="description" content="Confidential FightFax financial dashboard.">
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -12,97 +12,129 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#000;--fg:#fff;--muted:#9a9a9a;--faint:#6b6b6b;--card:#141414;--card-2:#0e0e0e;
 --line:#262626;--line-soft:#1a1a1a;--invert-bg:#fff;--invert-fg:#000;--maxw:1180px;
---display:'Space Grotesk','Helvetica Neue',Arial,sans-serif;--mono:'Space Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;}
+--accent:#e74c3c;--accent-soft:rgba(231,76,60,0.30);--accent-glow:rgba(231,76,60,0.45);
+--display:'Unbounded','Helvetica Neue',Arial,sans-serif;--mono:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--fg);font-family:var(--mono);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
+b,strong{font-family:var(--display);font-weight:700}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-h1,h2,h3,.display{font-family:var(--display);font-weight:700;letter-spacing:-0.02em;line-height:1.05}
-header.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,0.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+h1,h2,h3,.display{font-family:var(--display);font-weight:700;letter-spacing:-0.01em;line-height:1.07}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(26,26,28,0.72);backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);border-bottom:1px solid rgba(255,255,255,0.08)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:0.02em;display:flex;align-items:center;gap:11px}
-.brand-mark{width:26px;height:26px;display:block;border-radius:3px}
-.nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);transition:color .15s}
-.nav-links a:hover{color:var(--fg)}
-.nav-cta{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;background:var(--invert-bg);color:var(--invert-fg);padding:10px 16px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--invert-bg);transition:.15s}
-.nav-cta:hover{background:transparent;color:var(--fg)}
-.tag-conf{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#000;background:var(--fg);padding:5px 10px;font-weight:700}
+.brand{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:0.01em;display:flex;align-items:center;gap:10px;color:#fff}
+.brand-mark{width:24px;height:24px;display:block;border-radius:3px}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:#cfcfcf;transition:color .18s,text-shadow .18s}
+.nav-links a:hover{color:var(--accent);text-shadow:0 0 14px var(--accent-glow)}
+.tag-conf{font-family:var(--display);font-weight:600;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:5px 10px}
 footer{border-top:1px solid var(--line-soft);padding:42px 0;margin-top:20px}
 .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px}
-.foot-brand{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:0.02em}
-.foot-links{display:flex;gap:22px;flex-wrap:wrap}
-.foot-links a{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)}
-.foot-links a:hover{color:var(--fg)}
+.foot-brand{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:0.01em}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap}
+.foot-links a{font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);transition:color .18s,text-shadow .18s}
+.foot-links a:hover{color:var(--accent);text-shadow:0 0 12px var(--accent-glow)}
 .foot-fine{font-size:12px;color:var(--faint);margin-top:24px}
 /* GATE */
 .gate{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:60px 24px}
 .gate-card{width:100%;max-width:440px;border:1px solid var(--line);background:var(--card-2);padding:44px 38px;text-align:center}
-.gate-card img{width:64px;height:64px;border-radius:6px;margin:0 auto 26px;display:block}
-.gate-card .eyebrow{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint)}
-.gate-card h1{font-size:28px;margin:12px 0 10px}
+.gate-card img{width:60px;height:60px;border-radius:6px;margin:0 auto 24px;display:block}
+.gate-card .eyebrow{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+.gate-card h1{font-size:26px;margin:12px 0 10px}
 .gate-card p{color:var(--muted);font-size:13.5px;margin-bottom:26px}
 .gate-field{display:flex;flex-direction:column;gap:12px}
 .gate-field input{background:#000;border:1px solid var(--line);color:var(--fg);font-family:var(--mono);font-size:15px;padding:15px 16px;outline:none;transition:border .15s,box-shadow .15s;text-align:center;letter-spacing:0.1em}
-.gate-field input:focus{border-color:var(--fg);box-shadow:0 0 0 3px rgba(255,255,255,0.06)}
-.gate-btn{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;background:var(--invert-bg);color:var(--invert-fg);border:1px solid var(--invert-bg);padding:15px;cursor:pointer;transition:.15s}
-.gate-btn:hover{background:transparent;color:var(--fg)}
+.gate-field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.gate-btn{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;background:var(--accent);color:#fff;border:1px solid var(--accent);padding:15px;cursor:pointer;transition:background .18s,color .18s,box-shadow .18s}
+.gate-btn:hover{background:transparent;color:#fff;box-shadow:0 0 22px var(--accent-soft)}
 .gate-btn:disabled{opacity:.5;cursor:wait}
 .gate-err{color:#fff;background:#2a0e0e;border:1px solid #5a2222;font-size:12.5px;padding:10px 12px;margin-top:16px;display:none}
 .gate-note{font-size:11px;color:var(--faint);margin-top:24px;line-height:1.6}
 .hidden{display:none!important}
 .fade-in{animation:fadeUp .5s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media (max-width:860px){
- .nav-links{display:none}
- .gate-card{padding:34px 24px}
-}
-
 .dash-hero{padding:40px 0 10px}
-.dash-hero .eyebrow{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--faint)}
-.dash-hero h1{font-size:clamp(30px,4.4vw,52px);margin:14px 0 0}
-.dash-hero p{color:var(--muted);max-width:70ch;margin-top:16px}
-.back-link{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);display:inline-block;margin-bottom:8px}
-.back-link:hover{color:var(--fg)}
+.dash-hero .eyebrow{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+.dash-hero h1{font-size:clamp(28px,4.2vw,48px);margin:14px 0 0}
+.dash-hero p{color:var(--muted);max-width:70ch;margin-top:16px;font-weight:400}
+.back-link{font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);display:inline-block;margin-bottom:8px;transition:color .18s}
+.back-link:hover{color:var(--accent)}
+.eyebrow{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
 .kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:36px 0 8px}
-.kpi{border:1px solid var(--line);background:var(--card);padding:22px 18px;transition:transform .18s,border-color .18s,background .18s}
-.kpi:hover{transform:translateY(-3px);border-color:#3a3a3a;background:#181818}
-.kpi .v{font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-0.02em}
-.kpi .l{font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);margin-top:8px;line-height:1.4}
-.chart-card{border:1px solid var(--line);background:var(--card);padding:30px 28px;margin-top:22px}
-.chart-card h2{font-size:21px;margin-bottom:4px}
+.kpi{border:1px solid var(--line);background:var(--card);padding:22px 18px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.kpi:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 36px -12px var(--accent-soft)}
+.kpi .v{font-family:var(--display);font-weight:700;font-size:24px;letter-spacing:-0.02em}
+.kpi .l{font-family:var(--display);font-weight:500;font-size:10px;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);margin-top:8px;line-height:1.4}
+.chart-card{border:1px solid var(--line);background:var(--card);padding:30px 28px;margin-top:22px;transition:border-color .2s ease,box-shadow .2s ease}
+.chart-card:hover{border-color:#333;box-shadow:0 12px 40px -16px var(--accent-soft)}
+.chart-card h2{font-size:20px;margin-bottom:4px}
 .chart-card .cap{color:var(--muted);font-size:13px;margin-bottom:20px}
 .chart-svg{width:100%;height:auto;display:block;overflow:visible}
 .grid{stroke:#1f1f1f;stroke-width:1}
 .axis-x,.axis-y{fill:var(--faint);font-family:var(--mono);font-size:11px}
 .bar-total{fill:var(--fg);font-family:var(--display);font-weight:700;font-size:12px}
 .seg{transition:opacity .15s}
-.seg:hover{opacity:0.78;cursor:pointer}
+.seg:hover{opacity:0.8;cursor:pointer}
 .legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px}
 .legend span{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
 .legend i{width:12px;height:12px;display:inline-block;border:1px solid #333}
 .toggle{display:inline-flex;border:1px solid var(--line);margin-bottom:18px}
-.toggle button{background:none;border:none;color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:9px 16px;cursor:pointer;transition:.15s}
-.toggle button.active{background:var(--fg);color:#000}
+.toggle button{background:none;border:none;color:var(--muted);font-family:var(--display);font-weight:500;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;padding:9px 16px;cursor:pointer;transition:.18s}
+.toggle button.active{background:var(--accent);color:#fff}
 .dash-grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
 .round-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
-.round-card{border:1px solid var(--line);background:var(--card-2);padding:22px 18px;transition:transform .18s,border-color .18s}
-.round-card.hl{background:var(--fg);color:#000}
-.round-card:hover{transform:translateY(-3px);border-color:#3a3a3a}
-.round-card .v{font-family:var(--display);font-weight:700;font-size:24px}
-.round-card .l{font-size:11px;letter-spacing:0.05em;text-transform:uppercase;margin-top:8px;color:var(--muted)}
-.round-card.hl .l{color:#444}
-.dash-note{font-size:12px;color:var(--faint);margin-top:26px;line-height:1.7;font-style:italic;border-top:1px solid var(--line-soft);padding-top:20px}
-#tooltip{position:fixed;pointer-events:none;background:#000;border:1px solid #3a3a3a;color:#fff;font-family:var(--mono);font-size:12px;padding:8px 11px;z-index:200;opacity:0;transition:opacity .1s;white-space:nowrap}
+.round-card{border:1px solid var(--line);background:var(--card-2);padding:22px 18px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.round-card.hl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.round-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 36px -12px var(--accent-soft)}
+.round-card .v{font-family:var(--display);font-weight:700;font-size:23px}
+.round-card .l{font-family:var(--display);font-weight:500;font-size:10px;letter-spacing:0.05em;text-transform:uppercase;margin-top:8px;color:var(--muted)}
+.round-card.hl .l{color:rgba(255,255,255,0.8)}
+.dash-note{font-size:12px;color:var(--faint);margin-top:20px;line-height:1.7;font-style:italic;border-top:1px solid var(--line-soft);padding-top:18px}
+/* ROI */
+.roi-intro{color:var(--muted);font-size:14px;max-width:78ch;margin-bottom:6px;font-weight:400}
+.roi-intro b{color:var(--fg)}
+.roi-sub{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin:26px 0 10px}
+.roi-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.roi-table th{font-family:var(--display);font-weight:600;font-size:10px;letter-spacing:0.05em;text-transform:uppercase;color:var(--faint);text-align:right;padding:11px 14px;border-bottom:1px solid var(--line)}
+.roi-table th:first-child{text-align:left}
+.roi-table td{padding:13px 14px;border-bottom:1px solid var(--line-soft);text-align:right;color:var(--muted)}
+.roi-table td:first-child{text-align:left}
+.roi-table td.sc{color:var(--fg);font-family:var(--display);font-weight:600}
+.roi-table td.mult{color:var(--accent);font-family:var(--display);font-weight:700}
+.roi-table tbody tr{transition:background .15s}
+.roi-table tbody tr:hover{background:#181818}
+/* BENEFITS */
+.benefits{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+.benefit{border:1px solid var(--line);background:var(--card-2);padding:20px 20px;display:flex;gap:14px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.benefit:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 12px 36px -14px var(--accent-soft)}
+.benefit .bn{font-family:var(--display);font-weight:700;color:var(--accent);font-size:15px;line-height:1.2;min-width:26px}
+.benefit .bt b{font-family:var(--display);font-weight:600;color:var(--fg);display:block;margin-bottom:5px;font-size:14px}
+.benefit .bt span{color:var(--muted);font-size:13px}
+/* CTA */
+.btn{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;padding:15px 26px;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--fg);cursor:pointer;transition:all .18s;background:transparent;color:var(--fg)}
+.btn .arrow{font-family:var(--display);font-size:14px}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-primary:hover{background:transparent;color:#fff;border-color:var(--accent);box-shadow:0 0 26px var(--accent-soft)}
+.sec-eyebrow{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.cta-final{text-align:center;border:1px solid var(--line);background:var(--card-2);border-top:3px solid var(--accent);padding:60px 30px;margin-top:30px;transition:box-shadow .25s ease}
+.cta-final:hover{box-shadow:0 18px 56px -16px var(--accent-glow)}
+.cta-final h2{font-size:clamp(24px,3.2vw,40px);max-width:22ch;margin:0 auto}
+.cta-final p{color:var(--muted);margin-top:16px;max-width:62ch;margin-left:auto;margin-right:auto;font-size:14px;font-weight:400}
+.cta-final .btn{margin-top:28px}
+.cta-mail{font-size:13px;margin-top:16px}
+.cta-mail a{color:var(--accent);border-bottom:1px solid transparent;transition:border-color .15s}
+.cta-mail a:hover{border-bottom-color:var(--accent)}
+#tooltip{position:fixed;pointer-events:none;background:#000;border:1px solid var(--accent);color:#fff;font-family:var(--mono);font-size:12px;padding:8px 11px;z-index:200;opacity:0;transition:opacity .1s;white-space:nowrap}
 .line-pt{transition:r .15s}
 .line-pt:hover{cursor:pointer}
-@media (max-width:980px){.kpi-row{grid-template-columns:repeat(3,1fr)}.round-cards{grid-template-columns:repeat(2,1fr)}.dash-grid2{grid-template-columns:1fr}}
-@media (max-width:560px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:980px){.kpi-row{grid-template-columns:repeat(3,1fr)}.round-cards{grid-template-columns:repeat(2,1fr)}.dash-grid2{grid-template-columns:1fr}.benefits{grid-template-columns:1fr}}
+@media (max-width:680px){.kpi-row{grid-template-columns:repeat(2,1fr)}.roi-table{font-size:12px}.roi-table th,.roi-table td{padding:9px 8px}}
+@media (max-width:860px){.nav-links{display:none}.gate-card{padding:34px 24px}}
 </style>
 </head>
 <body>
@@ -113,9 +145,9 @@ footer{border-top:1px solid var(--line-soft);padding:42px 0;margin-top:20px}
 <span class="tag-conf">Confidential</span>
 </nav></div></header><div class="gate" id="gate"><div class="gate-card">
 <img src="logo.png" alt="FightFax">
-<p class="eyebrow">Financial Model</p>
-<h1>Financial Model Access</h1>
-<p>Enter the access password to view the interactive FightFax financial dashboard.</p>
+<p class="eyebrow">Financials</p>
+<h1>FightFax Financials</h1>
+<p>Enter the access password to view the FightFax financial model, returns, and investment case.</p>
 <div class="gate-field">
 <input type="password" id="pw" placeholder="Access password" autocomplete="off" autofocus>
 <button class="gate-btn" id="unlock">Unlock</button>
@@ -124,9 +156,9 @@ footer{border-top:1px solid var(--line-soft);padding:42px 0;margin-top:20px}
 <p class="gate-note">These materials are confidential and provided to named recipients. By continuing you agree not to redistribute them.</p>
 </div></div><main class="wrap"><div id="content" class="hidden fade-in">
 <div class="dash-hero"><a href="investors.html" class="back-link">&larr; Back to Investor Relations</a>
-<p class="eyebrow">Confidential / Financial Model</p>
-<h1>FightFax Financial Model</h1>
-<p>A five-year view of revenue, profitability, cost structure, and valuation. Hover any bar or point for the underlying figure. Projections are illustrative.</p></div>
+<p class="eyebrow">Confidential / Investor Financials</p>
+<h1>FightFax Financials</h1>
+<p>A five-year view of revenue, profitability, cost structure, and valuation, plus the investor return case. Hover any bar or point for the underlying figure. Projections are illustrative.</p></div>
 <div id="dash"></div></div></main><footer><div class="wrap foot-inner"><span class="foot-brand">FIGHT FAX</span>
 <nav class="foot-links"><a href="index.html">Home</a><a href="https://fightfax.com" target="_blank" rel="noopener">FightFax.com</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="investors.html">Investor Relations</a></nav></div>
 <div class="wrap"><p class="foot-fine">Confidential investor material. Provided to named recipients only. &copy; <span id="yr"></span> FightFax. All rights reserved.</p></div></footer><div id="tooltip"></div>
@@ -150,7 +182,7 @@ function pct(n){return (n*100).toFixed(n<0?0:1)+'%';}
 function niceCeil(v){var p=Math.pow(10,Math.floor(Math.log10(v)));var f=v/p;var n=f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10;return n*p;}
 function el(html){var t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstChild;}
 
-var SHADES={Sponsorship:'#ffffff',Subscription:'#c4c4c4',Advertising:'#909090',Partnership:'#5e5e5e',Commission:'#363636'};
+var SHADES={Sponsorship:'#e74c3c',Subscription:'#c4c4c4',Advertising:'#909090',Partnership:'#5e5e5e',Commission:'#363636'};
 
 function revenueChart(d){
   var W=720,H=360,pl=66,pr=16,pt=22,pb=44,iw=W-pl-pr,ih=H-pt-pb;
@@ -183,7 +215,7 @@ function profitChart(d){
   var bars='',pts=[];
   for(var i=0;i<n;i++){
     var cx=pl+slot*i+slot/2,x=cx-bw/2,v=d.ebitda[i],y=Y(v),h=Math.abs(y-zeroY),yy=Math.min(y,zeroY);
-    var fill=v>=0?'#ffffff':'#5e5e5e';
+    var fill=v>=0?'#e74c3c':'#5e5e5e';
     bars+='<rect class="seg" x="'+x+'" y="'+yy+'" width="'+bw+'" height="'+h+'" fill="'+fill+'" data-tip="EBITDA '+d.years[i]+': '+fmtM(v)+'"/>';
     var ny=Y(d.netIncome[i]);pts.push([cx,ny,d.netIncome[i],d.years[i]]);
     bars+='<text class="axis-x" x="'+cx+'" y="'+(H-pb+20)+'" text-anchor="middle">'+d.years[i].replace('Year','Yr')+'</text>';
@@ -191,7 +223,7 @@ function profitChart(d){
   var poly=pts.map(function(p){return p[0]+','+p[1];}).join(' ');
   var line='<polyline points="'+poly+'" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>';
   pts.forEach(function(p){line+='<circle class="line-pt seg" cx="'+p[0]+'" cy="'+p[1]+'" r="5" fill="#000" stroke="#fff" stroke-width="2" data-tip="Net income '+p[3]+': '+fmtM(p[2])+'"/>';});
-  var leg='<div class="legend"><span><i style="background:#fff"></i>EBITDA (bars)</span><span><i style="background:#000;border-color:#fff"></i>Net income (line)</span></div>';
+  var leg='<div class="legend"><span><i style="background:#e74c3c"></i>EBITDA (bars)</span><span><i style="background:#000;border-color:#fff"></i>Net income (line)</span></div>';
   return '<svg viewBox="0 0 '+W+' '+H+'" class="chart-svg">'+g+bars+line+'</svg>'+leg;
 }
 
@@ -210,8 +242,8 @@ function marginChart(d){
     pts.forEach(function(p){out+='<circle class="line-pt seg" cx="'+p[0]+'" cy="'+p[1]+'" r="4.5" fill="#000" stroke="'+color+'" stroke-width="2" data-tip="'+label+' '+p[3]+': '+pct(p[2])+'"/>';});
     return out;
   }
-  var lines=series('grossMargin','#ffffff','',"Gross margin")+series('ebitdaMargin','#9a9a9a','6 4',"EBITDA margin")+series('netMargin','#5e5e5e','2 4',"Net margin");
-  var leg='<div class="legend"><span><i style="background:#fff"></i>Gross margin</span><span><i style="background:#9a9a9a"></i>EBITDA margin</span><span><i style="background:#5e5e5e"></i>Net margin</span></div>';
+  var lines=series('grossMargin','#e74c3c','',"Gross margin")+series('ebitdaMargin','#9a9a9a','6 4',"EBITDA margin")+series('netMargin','#5e5e5e','2 4',"Net margin");
+  var leg='<div class="legend"><span><i style="background:#e74c3c"></i>Gross margin</span><span><i style="background:#9a9a9a"></i>EBITDA margin</span><span><i style="background:#5e5e5e"></i>Net margin</span></div>';
   return '<svg viewBox="0 0 '+W+' '+H+'" class="chart-svg">'+g+lines+'</svg>'+leg;
 }
 
@@ -226,7 +258,7 @@ function costChart(d,yi){
     var y=top+i*rowH,bw=(vals[i]/max)*iw;
     rows+='<text class="axis-y" x="'+(pl-12)+'" y="'+(y+rowH/2+4)+'" text-anchor="end" style="fill:#bdbdbd">'+cats[i]+'</text>';
     rows+='<rect x="'+pl+'" y="'+(y+8)+'" width="'+iw+'" height="'+(rowH-22)+'" fill="#1a1a1a"/>';
-    rows+='<rect class="seg" x="'+pl+'" y="'+(y+8)+'" width="'+bw+'" height="'+(rowH-22)+'" fill="#fff" data-tip="'+cats[i]+': '+fmtM(vals[i])+'"/>';
+    rows+='<rect class="seg" x="'+pl+'" y="'+(y+8)+'" width="'+bw+'" height="'+(rowH-22)+'" fill="#e74c3c" data-tip="'+cats[i]+': '+fmtM(vals[i])+'"/>';
     rows+='<text class="bar-total" x="'+(pl+bw+8)+'" y="'+(y+rowH/2+4)+'">'+fmtM(vals[i])+'</text>';
   }
   return '<svg viewBox="0 0 '+W+' '+H+'" class="chart-svg">'+rows+'</svg>';
@@ -245,16 +277,55 @@ function valuationChart(d){
   for(var i=0;i<methods.length;i++){
     var y=top+i*rowH,bwid=X(methods[i].value)-pl;
     out+='<text class="axis-y" x="'+(pl-12)+'" y="'+(y+rowH/2+4)+'" text-anchor="end" style="fill:#bdbdbd">'+methods[i].name+'</text>';
-    out+='<rect class="seg" x="'+pl+'" y="'+(y+9)+'" width="'+bwid+'" height="'+(rowH-26)+'" fill="#fff" data-tip="'+methods[i].name+': '+fmtM(methods[i].value)+' (weight '+Math.round(methods[i].weight*100)+'%)"/>';
+    out+='<rect class="seg" x="'+pl+'" y="'+(y+9)+'" width="'+bwid+'" height="'+(rowH-26)+'" fill="#e74c3c" data-tip="'+methods[i].name+': '+fmtM(methods[i].value)+' (weight '+Math.round(methods[i].weight*100)+'%)"/>';
     out+='<text class="bar-total" x="'+(X(methods[i].value)+8)+'" y="'+(y+rowH/2+4)+'">'+fmtM(methods[i].value)+'</text>';
   }
   // weighted blend marker
   var wx=X(v.weighted),baseY=top+methods.length*rowH;
-  out+='<line x1="'+wx+'" y1="'+(top-14)+'" x2="'+wx+'" y2="'+(baseY+6)+'" stroke="#fff" stroke-width="2" stroke-dasharray="4 4"/>';
-  out+='<text class="axis-x" x="'+wx+'" y="'+(baseY+24)+'" text-anchor="middle" style="fill:#fff">weighted blend '+fmtM(v.weighted)+'</text>';
+  out+='<line x1="'+wx+'" y1="'+(top-14)+'" x2="'+wx+'" y2="'+(baseY+6)+'" stroke="#e74c3c" stroke-width="2" stroke-dasharray="4 4"/>';
+  out+='<text class="axis-x" x="'+wx+'" y="'+(baseY+24)+'" text-anchor="middle" style="fill:#e74c3c">weighted blend '+fmtM(v.weighted)+'</text>';
   return '<svg viewBox="0 0 '+W+' '+H+'" class="chart-svg">'+out+'</svg>';
 }
 
+function fmtBig(n){var a=Math.abs(n);if(a>=1e6)return '$'+(a/1e6).toFixed(1)+'M';if(a>=1e3)return '$'+Math.round(a/1e3)+'K';return '$'+Math.round(a);}
+function roiBlock(d){
+  var v=d.valuation,raise=v.raise,eq=v.equity,R5=d.totalRevenue[4];
+  function mk(mult,years,R){var ev=R*mult,stake=ev*eq,ret=stake/raise,irr=Math.pow(ret,1/years)-1;return {m:mult,ev:ev,stake:stake,ret:ret,irr:irr};}
+  function tag(rows){rows[0].n='Conservative';rows[1].n='Base';if(rows[2])rows[2].n='Upside';return rows;}
+  var s5=tag([mk(3,5,R5),mk(5,5,R5),mk(7,5,R5)]);
+  var cagr=0.25,R10=R5*Math.pow(1+cagr,5);
+  var s10=tag([mk(4,10,R10),mk(6,10,R10)]);
+  function tbl(rows){var h='<table class="roi-table"><thead><tr><th>Scenario</th><th>Exit multiple</th><th>Implied company value</th><th>Value of the round\u2019s stake</th><th>Return</th><th>IRR</th></tr></thead><tbody>';
+    rows.forEach(function(r){h+='<tr><td class="sc">'+r.n+'</td><td>'+r.m+'x revenue</td><td>'+fmtBig(r.ev)+'</td><td>'+fmtBig(r.stake)+'</td><td class="mult">'+r.ret.toFixed(1)+'x</td><td>'+Math.round(r.irr*100)+'%</td></tr>';});
+    return h+'</tbody></table>';}
+  var intro='<p class="roi-intro">At the midpoint, a <b>'+fmtM(raise)+'</b> seed at a <b>'+fmtM(v.preMid)+'</b> pre-money buys roughly <b>'+pct(eq)+'</b> of FightFax (<b>'+fmtM(v.postMoney)+'</b> post-money). The scenarios below apply revenue exit multiples to that ownership.</p>';
+  var note='<p class="dash-note">Illustrative only. Year 1 to 5 revenue is taken from the financial model; the exit multiples and the Year 6 to 10 growth assumption ('+Math.round(cagr*100)+'% CAGR, which extends beyond the modeled period) are stated assumptions, not forecasts. Figures assume no further dilution from later rounds, which would reduce a seed investor\u2019s ownership and returns. This is not a promise or guarantee of any return, and not investment, legal, or tax advice.</p>';
+  return '<div class="chart-card"><h2>Investor returns, 5 to 10 years</h2><div class="cap">What the round could be worth at exit under stated revenue-multiple scenarios.</div>'+intro
+    +'<div class="roi-sub">Exit at year 5 (modeled period)</div>'+tbl(s5)
+    +'<div class="roi-sub">Longer horizon, year 10 (extrapolated)</div>'+tbl(s10)+note+'</div>';
+}
+function benefitsBlock(){
+  var items=[
+   ['Forty-year institution','Sole official record-keeper recognition from the ABC since 2005 and WBA alignment since 2024. This is an established authority, not a concept.'],
+   ['Recurring institutional revenue','Commissions report for free; the parties that depend on verified records pay. Revenue compounds as the standard spreads.'],
+   ['An asset-backed floor','The valuation\u2019s asset method alone supports the low end of the range, so the entry is not built on projections.'],
+   ['Capital-efficient','The model turns EBITDA-positive in Year 2 on a lean cost base, so the raise funds growth rather than survival.'],
+   ['A defensible moat','Four decades of records and official designations are slow and costly for any competitor to replicate.'],
+   ['Network effects','More commissions bring more data, more data deepens dependence, and dependence is hard to unwind.']
+  ];
+  var h='<div class="chart-card"><h2>Why the upside is credible</h2><div class="cap">The case rests on position and economics, not only on the projections.</div><div class="benefits">';
+  items.forEach(function(it,i){h+='<div class="benefit"><div class="bn">0'+(i+1)+'</div><div class="bt"><b>'+it[0]+'</b><span>'+it[1]+'</span></div></div>';});
+  return h+'</div></div>';
+}
+function ctaBlock(d){
+  var v=d.valuation;var subj=encodeURIComponent('FightFax investment enquiry');
+  var body=encodeURIComponent('I would like to learn more about the FightFax seed round and investment opportunity.\n\nName / firm: \n');
+  return '<div class="cta-final"><p class="sec-eyebrow">Investment Opportunity</p>'
+   +'<h2>Back the record keeper of the sport.</h2>'
+   +'<p>FightFax is raising a '+fmtM(v.raise)+' seed round to turn four decades of institutional authority into recurring, paid infrastructure. For the full data room, diligence materials, and to discuss terms, get in touch.</p>'
+   +'<a class="btn btn-primary" href="mailto:info@fightfaxrecords.com?subject='+subj+'&body='+body+'">Enquire about investing <span class="arrow">\u2192</span></a>'
+   +'<p class="cta-mail">or email <a href="mailto:info@fightfaxrecords.com">info@fightfaxrecords.com</a></p></div>';
+}
 function buildDashboard(d){
   var root=document.getElementById('dash');
   var v=d.valuation;
@@ -284,9 +355,9 @@ function buildDashboard(d){
     '<div class="round-card"><div class="v">'+pct(v.equity)+'</div><div class="l">Equity to investors</div></div>'+
   '</div>';
 
-  var note='<p class="dash-note">Figures from the FightFax 5-year financial model (P&L and valuation). Tax modeled at the 20% Vietnam corporate rate on positive pre-tax income, $0 in loss years; net operating loss carryforward is not modeled and would lower early-year tax. Forward-revenue multiples are excluded from the headline valuation and shown nowhere here, as they inflate value on unproven projections. Projections are illustrative, not a guarantee of future performance.</p>';
+  var note='<p class="dash-note">Figures from the FightFax 5-year financial model (P&L and valuation). Tax modeled at a 20% corporate tax rate on positive pre-tax income, $0 in loss years; net operating loss carryforward is not modeled and would lower early-year tax. Forward-revenue multiples are excluded from the headline valuation and shown nowhere here, as they inflate value on unproven projections. Projections are illustrative, not a guarantee of future performance.</p>';
 
-  root.innerHTML=kh+revBlock+'<div class="dash-grid2">'+profBlock+marginBlock+'</div>'+costBlock+valBlock+roundBlock+note;
+  root.innerHTML=kh+revBlock+'<div class="dash-grid2">'+profBlock+marginBlock+'</div>'+costBlock+valBlock+roundBlock+roiBlock(d)+benefitsBlock()+ctaBlock(d)+note;
 
   // cost toggle
   var ct=document.getElementById('costToggle');
