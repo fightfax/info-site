@@ -115,8 +115,7 @@ footer{border-top:1px solid var(--line-soft);padding:42px 0}
 <h1 class="reveal">Own a position in boxing's data layer.</h1>
 <p class="lede reveal">FightFax is the official record keeper for professional boxing, operating since 1984 and recognized by the Association of Boxing Commissions since 2005. We are raising a seed round to turn institutional recognition into recurring, paid infrastructure.</p>
 <div class="cta-row reveal">
-<button class="btn btn-primary" id="heroRoom">Enter the investor data room <span class="arrow">&rarr;</span></button>
-<a class="btn btn-ghost" href="#why">Why invest</a>
+<a class="btn btn-primary" href="#why">Why invest <span class="arrow">&rarr;</span></a>
 </div>
 <p class="hero-note reveal">Detailed financials, the round, and partner information are shared with qualified investors in a secure, access-controlled data room.</p>
 </div>
@@ -176,8 +175,8 @@ footer{border-top:1px solid var(--line-soft);padding:42px 0}
 <div class="wrap">
 <p class="sec-eyebrow reveal" style="margin-bottom:22px">Grow With Us</p>
 <h2 class="reveal">The definitive record of the sport, and the business behind it.</h2>
-<p class="reveal">Reach the team for diligence materials, partnership terms, or an introduction.</p>
-<button class="btn btn-primary reveal" id="ctaRoom">Enter the investor data room <span class="arrow">&rarr;</span></button>
+<p class="reveal">Read the full business plan, then reach the team for diligence materials or an introduction.</p>
+<a class="btn btn-primary reveal" href="business-plan.html">Read the business plan <span class="arrow">&rarr;</span></a>
 <div class="contact-row reveal">
 <div class="contact-item"><div class="lab">Investor enquiries</div><div class="val"><a href="mailto:info@fightfaxrecords.com">info@fightfaxrecords.com</a></div></div>
 <div class="contact-item"><div class="lab">Main platform</div><div class="val"><a href="https://fightfax.com" target="_blank" rel="noopener">fightfax.com</a></div></div>
@@ -205,7 +204,7 @@ function openRoom(){
   if(DATA_ROOM_URL && DATA_ROOM_URL.trim()){ window.open(DATA_ROOM_URL.trim(),'_blank','noopener'); }
   else { window.location.href=REQUEST_MAILTO; }
 }
-['heroRoom','panelRoom','ctaRoom'].forEach(function(id){var b=document.getElementById(id);if(b)b.addEventListener('click',openRoom);});
+['panelRoom'].forEach(function(id){var b=document.getElementById(id);if(b)b.addEventListener('click',openRoom);});
 
 var toggle=document.getElementById('menuToggle'),links=document.getElementById('navLinks');
 toggle.addEventListener('click',function(){links.classList.toggle('open');});
