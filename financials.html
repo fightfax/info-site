@@ -133,7 +133,17 @@ footer{border-top:1px solid var(--line-soft);padding:42px 0;margin-top:20px}
 .line-pt{transition:r .15s}
 .line-pt:hover{cursor:pointer}
 @media (max-width:980px){.kpi-row{grid-template-columns:repeat(3,1fr)}.round-cards{grid-template-columns:repeat(2,1fr)}.dash-grid2{grid-template-columns:1fr}.benefits{grid-template-columns:1fr}}
-@media (max-width:680px){.kpi-row{grid-template-columns:repeat(2,1fr)}.roi-table{font-size:12px}.roi-table th,.roi-table td{padding:9px 8px}}
+@media (max-width:680px){.kpi-row{grid-template-columns:repeat(2,1fr)}
+.roi-table thead{display:none}
+.roi-table,.roi-table tbody{display:block}
+.roi-table tbody tr{display:block;border:1px solid var(--line);background:var(--card-2);padding:4px 16px 10px;margin-bottom:12px}
+.roi-table tbody tr:hover{background:var(--card-2)}
+.roi-table td{display:flex;justify-content:space-between;align-items:baseline;gap:16px;text-align:right;padding:10px 0;border-bottom:1px solid var(--line-soft)}
+.roi-table td:last-child{border-bottom:none}
+.roi-table td::before{content:attr(data-label);font-family:var(--display);font-weight:600;font-size:10px;letter-spacing:0.05em;text-transform:uppercase;color:var(--faint);white-space:nowrap;text-align:left}
+.roi-table td.sc{display:block;text-align:left;font-size:16px;color:var(--accent);padding:12px 0 10px;border-bottom:1px solid var(--line)}
+.roi-table td.sc::before{display:none}
+}
 @media (max-width:860px){.nav-links{display:none}.gate-card{padding:34px 24px}}
 </style>
 </head>
@@ -296,7 +306,7 @@ function roiBlock(d){
   var cagr=0.25,R10=R5*Math.pow(1+cagr,5);
   var s10=tag([mk(4,10,R10),mk(6,10,R10)]);
   function tbl(rows){var h='<table class="roi-table"><thead><tr><th>Scenario</th><th>Exit multiple</th><th>Implied company value</th><th>Value of the round\u2019s stake</th><th>Return</th><th>IRR</th></tr></thead><tbody>';
-    rows.forEach(function(r){h+='<tr><td class="sc">'+r.n+'</td><td>'+r.m+'x revenue</td><td>'+fmtBig(r.ev)+'</td><td>'+fmtBig(r.stake)+'</td><td class="mult">'+r.ret.toFixed(1)+'x</td><td>'+Math.round(r.irr*100)+'%</td></tr>';});
+    rows.forEach(function(r){h+='<tr><td class="sc">'+r.n+'</td><td data-label="Exit multiple">'+r.m+'x revenue</td><td data-label="Implied company value">'+fmtBig(r.ev)+'</td><td data-label="Value of stake">'+fmtBig(r.stake)+'</td><td class="mult" data-label="Return">'+r.ret.toFixed(1)+'x</td><td data-label="IRR">'+Math.round(r.irr*100)+'%</td></tr>';});
     return h+'</tbody></table>';}
   var intro='<p class="roi-intro">At the midpoint, a <b>'+fmtM(raise)+'</b> seed at a <b>'+fmtM(v.preMid)+'</b> pre-money buys roughly <b>'+pct(eq)+'</b> of FightFax (<b>'+fmtM(v.postMoney)+'</b> post-money). The scenarios below apply revenue exit multiples to that ownership.</p>';
   var note='<p class="dash-note">Illustrative only. Year 1 to 5 revenue is taken from the financial model; the exit multiples and the Year 6 to 10 growth assumption ('+Math.round(cagr*100)+'% CAGR, which extends beyond the modeled period) are stated assumptions, not forecasts. Figures assume no further dilution from later rounds, which would reduce a seed investor\u2019s ownership and returns. This is not a promise or guarantee of any return, and not investment, legal, or tax advice.</p>';
